@@ -70,17 +70,17 @@ body
 
   padding-right: 20px;
 }
-.navlinks li {
+.navlinks > li {
   float: left;
 
   padding: 8px 20px;
 }
-.navlinks li a {
+.navlinks > li > a {
   display: inline-block;
   
   transition: all 0.3s ease 0s;
 }
-.navlinks li a:hover, .dropdown:hover{
+.navlinks > li > a:hover, .dropdown:hover{
   display: block;
   color: white;
 
@@ -91,40 +91,80 @@ body
 
 /*#region dropdown*/
 li.dropdown {
-  display: inline-block;
+  /* display: inline-block; */
+  position: relative;
 }
-.dropdown-content {
-  display: none;
-  position: absolute;
-  align-items: flex-start;
 
-  padding-left: 0.5em;
-  padding-top: 0.5em;
-  border-left: 0.15em solid #eeebe84d;
+.dropdown-content {
+  display: grid;
+  position: absolute;
+  align-items: left;
+  align-items: start; /* stops "line" from stretching out of bounds*/
+
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "spacer spacer" /* specially for solid lines*/
+    "line content";
+
+  height: fit-content;
+  width: 150px;
   
   animation: scroll_topheader;
   animation-timeline: scroll(y);
-}
-.dropdown-content a {
-  display: block;
-  width: 100%;
 
+  display: none;
+}
+
+/* #region dropdown grid areas*/
+.dropdown-content > div.spacer {
+  grid-area: spacer;
+  height: 0.5em;
+}
+.dropdown-content > div.line {
+  grid-area: line;
+  width: 0.15em;
+  height: 100%; /* fill the dropdown */
+  background: linear-gradient(#eeebe800,#eeebe81e);
+}
+.dropdown-content > div.content {
+  grid-area: content;
+  text-align: left;
+  height: fit-content;
+  
+  padding-left: 0.6em;
+  padding-top: 0.8em;
+}
+/* #endregion dropdown grid areas*/
+
+.dropdown-content > div{
+  display: block;
+  padding: 0;
+  margin: 0; /*fixes extra space between "line" and links*/
+}
+
+.dropdown-content > div a {
+  display: block;
   line-height: 2em;
   
   text-align: left;
   text-decoration: none;
+  padding: 0;
+  padding-left: 0em;
 
   font-size: 90%;
   
   opacity: 0.5;
 }
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-.dropdown-content a:hover {
+.dropdown-content > div a:hover {
+  padding: 0;
+
   opacity: 0.7;
   
-  transition: all 0.3s ease 0s;
+  /* transition: all 0.3s ease 0s; */
+}
+
+.dropdown:hover .dropdown-content {
+  display: grid;
 }
 /*#endregion dropdown*/
 
@@ -145,4 +185,3 @@ li.dropdown {
   margin: auto;
   height: 100em;
 }
-
