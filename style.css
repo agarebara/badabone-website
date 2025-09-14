@@ -25,24 +25,7 @@ body
     background-color: #121212;
 }
 
-.navlinks {
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 20px;
-  list-style: none;
-}
-.navlinks li {
-  display: inline-block;
-  padding: 8px 20px;
-}
-.navlinks li a {
-  transition: all 0.3s ease 0s;
-}
-.navlinks li a:hover {
-  color: white;
-}
-/*add selected link style*/
-
+/*#region navbar-header*/
 .logo {
   display: flex;
   justify-content: flex-start;
@@ -50,16 +33,6 @@ body
   object-fit: scale-down;
   padding: 10px;
 }
-
-.bigheader {
-  width: 100%;
-  height: 21em;
-  background-image: url("/media/logo_horizontaltitle_bones.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-
 
 .navbar {
   /*position: sticky;*/
@@ -82,13 +55,94 @@ body
     background-color: #12121200;
   }
   20%{
-    background-color: #121212;
+    background-color: #1c1c1c;
   }
   100%{
-    background-color: #121212;
+    background-color: #1c1c1c;
   }
 }
 
-.content {
-  padding: 2em, 2em, 2em, 2em;
+/*#region navlinks*/
+.navlinks {
+  display: flex;
+  justify-content: flex-end;
+  list-style: none;
+
+  padding-right: 20px;
 }
+.navlinks li {
+  float: left;
+
+  padding: 8px 20px;
+}
+.navlinks li a {
+  display: inline-block;
+  
+  transition: all 0.3s ease 0s;
+}
+.navlinks li a:hover, .dropdown:hover{
+  display: block;
+  color: white;
+
+  transition: all 0.3s ease 0s;
+}
+/*add selected link style*/
+/*#endregion navlinks*/
+
+/*#region dropdown*/
+li.dropdown {
+  display: inline-block;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  align-items: flex-start;
+
+  padding-left: 0.5em;
+  padding-top: 0.5em;
+  border-left: 0.15em solid #eeebe84d;
+  
+  animation: scroll_topheader;
+  animation-timeline: scroll(y);
+}
+.dropdown-content a {
+  display: block;
+  width: 100%;
+
+  line-height: 2em;
+  
+  text-align: left;
+  text-decoration: none;
+
+  font-size: 90%;
+  
+  opacity: 0.5;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown-content a:hover {
+  opacity: 0.7;
+  
+  transition: all 0.3s ease 0s;
+}
+/*#endregion dropdown*/
+
+.subheader {
+  width: 100%;
+  height: 21em;
+  background-image: url("/media/logo_horizontaltitle_bones.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+/*#endregion navbar-header*/
+
+.content {
+  display: flex;
+  justify-content: center;
+  padding: 2em;
+  margin: auto;
+  height: 100em;
+}
+
